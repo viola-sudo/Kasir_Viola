@@ -227,6 +227,27 @@ class CashierSystem {
         }
     }
 
+    // Toast helper
+    showToast(message, type = 'info', timeout = 3000) {
+        let container = document.querySelector('.toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.className = 'toast-container';
+            document.body.appendChild(container);
+        }
+
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        container.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(8px)';
+            setTimeout(() => toast.remove(), 240);
+        }, timeout);
+    }
+
     formatCurrency(amount) {
         return new Intl.NumberFormat('id-ID', {
             style: 'currency',
@@ -1493,7 +1514,32 @@ class CashierSystem {
         const tax = afterDiscount * this.taxRate;
         const total = afterDiscount + tax;
 
-        if (confirm(`Total pembayaran: ${this.formatCurrency(total)}\n\nLanjutkan pembayaran?`)) {
+        // Check stock availability before confirming
+        const outOfStock = this.cart.find(ci => {
+            const prod = this.products.find(p => p.id === ci.id);
+            return prod && prod.stock < ci.quantity;
+        });
+
+        if (outOfStock) {
+            this.showToast('Stok tidak mencukupi untuk beberapa item', 'error');
+            return;
+        }
+
+        if (!confirm(`Total pembayaran: ${this.formatCurrency(total)}\n\nLanjutkan pembayaran?`)) {
+            return;
+        }
+
+        // Disable UI while processing
+        const totalBtn = document.querySelector('.receipt-footer .total-button');
+        const actionBtns = document.querySelectorAll('.action-buttons button');
+        if (totalBtn) {
+            totalBtn.classList.add('disabled');
+            totalBtn.textContent = 'Processing...';
+        }
+        actionBtns.forEach(b => b.disabled = true);
+
+        // Simulate processing delay then finalize
+        setTimeout(() => {
             const sale = {
                 id: this.sales.length + 1,
                 date: new Date().toISOString(),
@@ -1506,7 +1552,7 @@ class CashierSystem {
             };
 
             this.sales.push(sale);
-            
+
             // Update stock
             this.cart.forEach(cartItem => {
                 const product = this.products.find(p => p.id === cartItem.id);
@@ -1515,14 +1561,30 @@ class CashierSystem {
                 }
             });
 
-            alert('Pembayaran berhasil! Terima kasih.');
+            this.showToast('Pembayaran berhasil!', 'success');
+
+            // Low stock warnings
+            this.cart.forEach(ci => {
+                const p = this.products.find(x => x.id === ci.id);
+                if (p && p.stock <= 5) {
+                    this.showToast(`${p.name} stok tersisa ${p.stock}`, 'info', 4000);
+                }
+            });
+
             this.cart = [];
             this.currentCustomer = null;
             this.currentDiscount = null;
             this.updateCart();
             this.renderProducts();
             this.saveToLocalStorage();
-        }
+
+            // Re-enable UI
+            actionBtns.forEach(b => b.disabled = false);
+            if (totalBtn) {
+                // updateTotals will rewrite the button, so just remove disabled class
+                totalBtn.classList.remove('disabled');
+            }
+        }, 600);
     }
 
     migrateProductImages() {
