@@ -219,6 +219,12 @@ class CashierSystem {
                 <button onclick="cashier.printReceipt()">Print</button>
             </div>
         `;
+
+        // Reattach click handler since innerHTML replaced the element
+        const totalBtn = document.querySelector('.receipt-footer .total-button');
+        if (totalBtn) {
+            totalBtn.addEventListener('click', () => this.checkout());
+        }
     }
 
     formatCurrency(amount) {
