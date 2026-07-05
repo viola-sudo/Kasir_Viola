@@ -850,6 +850,7 @@ class CashierSystem {
         localStorage.setItem('cashier_cart', JSON.stringify(this.cart));
         localStorage.setItem('cashier_products', JSON.stringify(this.products));
         localStorage.setItem('cashier_customers', JSON.stringify(this.customers));
+        localStorage.setItem('cashier_sales', JSON.stringify(this.sales));
     }
 
     searchProducts(term) {
