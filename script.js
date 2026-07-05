@@ -50,11 +50,11 @@ class CashierSystem {
 
     attachEventListeners() {
         document.querySelectorAll('.top-nav span').forEach(nav => {
-            nav.addEventListener('click', (e) => this.switchView(e.target.textContent));
+            nav.addEventListener('click', (e) => this.switchView(e.currentTarget.textContent));
         });
 
         document.querySelectorAll('.cat-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => this.filterByCategory(e.target.textContent));
+            btn.addEventListener('click', (e) => this.filterByCategory(e.currentTarget.textContent));
         });
 
         document.querySelector('.plus-icon').addEventListener('click', () => this.showAddProductModal());
@@ -63,8 +63,7 @@ class CashierSystem {
 
     switchView(view) {
         this.currentView = view;
-        document.querySelectorAll('.top-nav span').forEach(nav => nav.classList.remove('active'));
-        event.target.classList.add('active');
+        document.querySelectorAll('.top-nav span').forEach(nav => nav.classList.toggle('active', nav.textContent === view));
 
         if (view === 'Custom') {
             this.showCustomItemModal();
@@ -81,8 +80,7 @@ class CashierSystem {
 
     filterByCategory(category) {
         this.currentCategory = category;
-        document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
+        document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.toggle('active', btn.textContent === category));
         this.renderProducts();
     }
 
@@ -103,6 +101,11 @@ class CashierSystem {
                 p.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
                 p.category.toLowerCase().includes(this.searchTerm.toLowerCase())
             );
+        }
+
+        if (!filteredProducts.length) {
+            productGrid.innerHTML = '<div class="empty-state">Tidak ada produk yang cocok dengan pencarian Anda.</div>';
+            return;
         }
 
         productGrid.innerHTML = filteredProducts.map(product => `

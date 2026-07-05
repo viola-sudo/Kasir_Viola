@@ -26,87 +26,103 @@
     </script>
 </head>
 <body>
-
-    <div class="main-container">
-        <div class="sidebar-receipt">
-            <div class="header-blue">DINE-IN <span class="plus-icon">+</span></div>
-            
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Qty</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cart-items">
-                        <tr>
-                            <td>Ayam Goreng Bumbu</td>
-                            <td>1x</td>
-                            <td>15,000</td>
-                        </tr>
-                        <tr>
-                            <td>Bakso Ikan Tusuk</td>
-                            <td>1x</td>
-                            <td>3,000</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="receipt-footer">
-                <div class="summary-line"><span>PPN 11%</span> <span>1,980</span></div>
-                <div class="total-button">
-                    Rp 19,980
+    <div class="app-shell">
+        <header class="app-header">
+            <div class="brand">
+                <div class="brand-badge">VK</div>
+                <div>
+                    <h1>Viola Kasir</h1>
+                    <p>Sistem kasir modern untuk restoran &amp; café</p>
                 </div>
             </div>
-        </div>
-
-        <div class="menu-content">
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Cari produk..." onkeyup="cashier.searchProducts(this.value)">
-                <button onclick="cashier.clearSearch()">Clear</button>
+            <div class="header-status">
+                <span class="status-pill">PWA Ready</span>
+                <span class="status-pill">Responsive</span>
             </div>
-            <div class="top-nav">
-                <span class="active" onclick="cashier.switchView('Products')">Products</span>
-                <span onclick="cashier.switchView('Menu Management')">Menu Management</span>
-                <span onclick="cashier.switchView('Reports')">Reports</span>
-                <span onclick="cashier.switchView('Barcode')">Barcode</span>
-                <span onclick="cashier.switchView('Custom')">Custom</span>
-                <span onclick="cashier.switchView('Customers')">Customers</span>
-            </div>
+        </header>
 
-            <div class="product-grid">
-                <div class="card">
-                    <img src="https://via.placeholder.com/100" alt="Produk">
-                    <p class="name">Ayam Bakar</p>
-                    <p class="price">15,000</p>
-                </div>
-                <div class="card">
-                    <img src="https://via.placeholder.com/100" alt="Produk">
-                    <p class="name">Air Mineral</p>
-                    <p class="price">5,000</p>
-                </div>
-                <div class="card">
-                    <img src="https://via.placeholder.com/100" alt="Produk">
-                    <p class="name">Avocado Juice</p>
-                    <p class="price">25,000</p>
-                </div>
+        <main class="main-container">
+            <aside class="sidebar-receipt">
+                <div class="header-blue">
+                    <span>DINE-IN</span>
+                    <button class="plus-icon" type="button" aria-label="Tambah produk">+</button>
                 </div>
 
-            <div class="category-footer">
-                <div class="cat-btn" onclick="cashier.filterByCategory('All Categories')">All Categories</div>
-                <div class="cat-btn" onclick="cashier.filterByCategory('Popular')">Popular</div>
-                <div class="cat-btn" onclick="cashier.filterByCategory('Resto')">Resto</div>
-                <div class="cat-btn" onclick="cashier.filterByCategory('Cafe')">Cafe</div>
-            </div>
-        </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-items">
+                            <tr>
+                                <td>Ayam Goreng Bumbu</td>
+                                <td>1x</td>
+                                <td>15,000</td>
+                            </tr>
+                            <tr>
+                                <td>Bakso Ikan Tusuk</td>
+                                <td>1x</td>
+                                <td>3,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="receipt-footer">
+                    <div class="summary-line"><span>PPN 11%</span> <span>1,980</span></div>
+                    <div class="total-button">Rp 19,980</div>
+                </div>
+            </aside>
+
+            <section class="menu-content">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Cari produk..." onkeyup="cashier.searchProducts(this.value)">
+                    <button onclick="cashier.clearSearch()">Clear</button>
+                </div>
+
+                <nav class="top-nav" aria-label="Navigasi utama">
+                    <span class="active" onclick="cashier.switchView('Products')">Products</span>
+                    <span onclick="cashier.switchView('Menu Management')">Menu Management</span>
+                    <span onclick="cashier.switchView('Reports')">Reports</span>
+                    <span onclick="cashier.switchView('Barcode')">Barcode</span>
+                    <span onclick="cashier.switchView('Custom')">Custom</span>
+                    <span onclick="cashier.switchView('Customers')">Customers</span>
+                </nav>
+
+                <div class="product-grid">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=200&h=200&fit=crop" alt="Produk">
+                        <p class="name">Ayam Bakar</p>
+                        <p class="price">Rp 15.000</p>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=200&h=200&fit=crop" alt="Produk">
+                        <p class="name">Air Mineral</p>
+                        <p class="price">Rp 5.000</p>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?w=200&h=200&fit=crop" alt="Produk">
+                        <p class="name">Avocado Juice</p>
+                        <p class="price">Rp 25.000</p>
+                    </div>
+                </div>
+
+                <div class="category-footer">
+                    <div class="cat-btn active" onclick="cashier.filterByCategory('All Categories')">All Categories</div>
+                    <div class="cat-btn" onclick="cashier.filterByCategory('Popular')">Popular</div>
+                    <div class="cat-btn" onclick="cashier.filterByCategory('Resto')">Resto</div>
+                    <div class="cat-btn" onclick="cashier.filterByCategory('Cafe')">Cafe</div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2026 Viola Kasir. All Rights Reserved.</p>
+        </footer>
     </div>
-
-    <footer class="app-footer">
-        <p>&copy; 2026 Viola Kasir. All Rights Reserved.</p>
-    </footer>
-
 </body>
 </html>

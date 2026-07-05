@@ -6,53 +6,115 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 45%, #2563eb 100%);
     min-height: 100vh;
     padding: 20px;
+    color: #1f2937;
 }
 
-.main-container {
-    display: flex;
-    max-width: 1400px;
+.app-shell {
+    max-width: 1440px;
     margin: 0 auto;
-    gap: 20px;
-    height: calc(100vh - 40px);
 }
 
-.sidebar-receipt {
-    flex: 1;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-}
-
-.header-blue {
-    background: linear-gradient(45deg, #2196F3, #1976D2);
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 18px;
+.app-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    padding: 18px 24px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
+    backdrop-filter: blur(10px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.brand-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+
+.brand h1 {
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+}
+
+.brand p {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.header-status {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.status-pill {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #eef2ff;
+    color: #4338ca;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.main-container {
+    display: flex;
+    gap: 20px;
+    min-height: calc(100vh - 220px);
+}
+
+.sidebar-receipt {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.16);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 420px;
+    min-width: 300px;
+}
+
+.header-blue {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    padding: 15px 18px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
 }
 
 .plus-icon {
     background: rgba(255,255,255,0.2);
+    border: none;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    color: white;
+    font-size: 1.1rem;
 }
 
 .plus-icon:hover {
@@ -122,9 +184,9 @@ tbody tr:hover {
 
 .menu-content {
     flex: 2;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.16);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -132,19 +194,21 @@ tbody tr:hover {
 
 .top-nav {
     display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 15px;
+    gap: 10px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 14px;
+    overflow-x: auto;
 }
 
 .top-nav span {
-    padding: 8px 16px;
-    border-radius: 20px;
+    padding: 8px 14px;
+    border-radius: 999px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-weight: 500;
-    color: #666;
+    font-weight: 600;
+    color: #6b7280;
+    white-space: nowrap;
 }
 
 .top-nav span:hover, .top-nav span.active {
@@ -155,33 +219,36 @@ tbody tr:hover {
 .product-grid {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
     overflow-y: auto;
     margin-bottom: 20px;
+    padding-right: 4px;
 }
 
 .card {
-    background: white;
-    border: 2px solid #f0f0f0;
-    border-radius: 12px;
-    padding: 15px;
+    background: linear-gradient(180deg, #ffffff, #f8fafc);
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 14px;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     position: relative;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    border-color: #2196F3;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.16);
+    border-color: #2563eb;
 }
 
 .card img {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
+    width: 100%;
+    max-width: 110px;
+    aspect-ratio: 1;
+    border-radius: 12px;
     margin-bottom: 10px;
     object-fit: cover;
 }
@@ -208,25 +275,26 @@ tbody tr:hover {
 .category-footer {
     display: flex;
     gap: 10px;
-    border-top: 2px solid #eee;
-    padding-top: 15px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 14px;
+    flex-wrap: wrap;
 }
 
 .cat-btn {
-    padding: 8px 16px;
-    border: 2px solid #ddd;
-    border-radius: 20px;
+    padding: 8px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    color: #666;
+    transition: all 0.25s ease;
+    font-weight: 600;
+    color: #6b7280;
     background: white;
 }
 
 .cat-btn:hover, .cat-btn.active {
-    background: linear-gradient(45deg, #FF6B6B, #FF5252);
+    background: linear-gradient(135deg, #f59e0b, #f97316);
     color: white;
-    border-color: #FF6B6B;
+    border-color: #f59e0b;
 }
 
 .quantity-controls {
@@ -262,16 +330,16 @@ tbody tr:hover {
 .search-bar {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .search-bar input {
     flex: 1;
-    padding: 10px 15px;
-    border: 2px solid #ddd;
-    border-radius: 25px;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
     font-size: 14px;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
 }
 
 .search-bar input:focus {
@@ -297,9 +365,19 @@ tbody tr:hover {
 
 .empty-cart {
     text-align: center;
-    color: #999;
+    color: #6b7280;
     padding: 40px 20px;
     font-style: italic;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    padding: 24px;
+    text-align: center;
+    color: #6b7280;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 16px;
 }
 
 .remove-item {
@@ -701,29 +779,55 @@ tbody tr:hover {
     box-shadow: 0 5px 15px rgba(76,175,80,0.3);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .main-container {
         flex-direction: column;
-        height: auto;
+        min-height: auto;
     }
-    
+
     .sidebar-receipt {
         max-width: 100%;
+        min-width: 0;
         margin-bottom: 20px;
     }
-    
-    .product-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 12px;
     }
-    
+
+    .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 16px;
+    }
+
+    .brand {
+        width: 100%;
+    }
+
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .search-bar button {
+        width: 100%;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .action-buttons {
         flex-direction: column;
     }
-    
+
     .report-summary {
         grid-template-columns: 1fr;
     }
-    
+
     .large-modal .modal-content.large {
         width: 95%;
         max-height: 90vh;
@@ -732,13 +836,14 @@ tbody tr:hover {
 
 .app-footer {
     text-align: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #374151;
     margin-top: 20px;
-    border-radius: 15px;
+    border-radius: 16px;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
 }
 
 .app-footer p {
